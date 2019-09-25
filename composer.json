@@ -1,0 +1,13 @@
+{
+  "name": "dmitriydev/simpleproject",
+  "description": "Simple project",
+  "require": {
+    "php": "^7.1",
+    "bramus/router": "~1.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  }
+}
