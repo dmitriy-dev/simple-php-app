@@ -1,9 +1,17 @@
 {
   "name": "dmitriydev/simpleproject",
+  "authors": [
+    {
+      "name": "dmitriydev",
+      "email": "d.panteleikin@gmail.com"
+    }
+  ],
   "description": "Simple project",
   "require": {
     "php": "^7.1",
-    "bramus/router": "~1.4"
+    "bramus/router": "~1.4",
+    "intervention/image": "^2.5",
+    "ramsey/uuid": "^3.8"
   },
   "autoload": {
     "psr-4": {

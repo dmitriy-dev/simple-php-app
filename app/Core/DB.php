@@ -57,12 +57,28 @@ class DB
         return $this->connection;
     }
 
+    public function insert(string $table, array $attributes)
+    {
+        $p = $this->connect()->prepare("INSERT INTO `$table` SET " . implode(', ', $attributes));
+        if ($p->execute()) {
+            $id = $this->connect()->lastInsertId();
+            $rows = $this->query("SELECT * FROM `$table` WHERE `id`='$id' LIMIT 1");
+            foreach ($rows as $row) {
+                return $row;
+            }
+        }
+        return $this->connect()->errorInfo();
+    }
+
     /**
-     * @param string $query
+     * @param string $queryString
      * @return bool|\PDOStatement
      */
-    public function query(string $query)
+    public function query(string $queryString)
     {
-        return $this->connect()->query($query);
+        $query = $this->connect()->prepare($queryString);
+        $query->execute();
+        return $query;
+        //return $this->connect()->query($query);
     }
 }

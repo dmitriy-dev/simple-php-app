@@ -8,6 +8,7 @@
 namespace App\Core;
 
 
+use App\Controllers\NotFoundController;
 use Bramus\Router\Router;
 
 class Application
@@ -22,6 +23,9 @@ class Application
 
     public function run()
     {
-        $this->router->run();
+        if(!$this->router->run()) {
+            $controller = new NotFoundController();
+            return $controller->index();
+        }
     }
 }

@@ -8,10 +8,12 @@
 namespace App\Controllers;
 
 
-class HomeController
+use App\Models\User;
+
+class HomeController extends Controller
 {
     public function index()
     {
-        echo 'hello world';
+        $this->view('home');
     }
 }

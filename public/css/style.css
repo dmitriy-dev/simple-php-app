@@ -1,0 +1,12 @@
+.nav {
+    padding: 20px 0;
+    margin-bottom: 20px;
+}
+
+.nav .btn {
+    margin: 0 5px;
+}
+
+.form-text .form-input-error {
+    color: red;
+}
