@@ -8,6 +8,8 @@
 namespace App\Validator\Validators;
 
 
+use App\Helpers\Lang;
+
 class ValidateImage implements ValidateInterface
 {
 
@@ -28,7 +30,7 @@ class ValidateImage implements ValidateInterface
         }
 
         return [
-            'error' => 'Формат файла должен быть jpeg, png или gif',
+            'error' => Lang::get('validator_error_image'),
         ];
     }
 }

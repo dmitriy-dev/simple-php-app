@@ -14,11 +14,12 @@ class Lang
 {
     /**
      * @param string $key
+     * @param array|null $names
      * @return null|string
      */
-    public static function get(string $key): ?string
+    public static function get(string $key, array $names = null): ?string
     {
-        return Localization::gi()->get($key);
+        return Localization::gi()->get($key, $names);
     }
 
     /**

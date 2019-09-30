@@ -28,7 +28,7 @@ class ValidateString implements ValidateInterface
         }
 
         return [
-            'error' => 'Поле должно быть строкой!',
+            'error' => Lang::get('validator_error_string'),
         ];
     }
 }

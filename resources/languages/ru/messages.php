@@ -22,4 +22,12 @@ return [
     'was_not_uploaded' => 'Не загружен',
     'password' => 'Пароль',
     'password_confirm' => 'Подтвердите пароль',
+
+    'validator_error_confirmed' => 'Поля не совпадают!',
+    'validator_error_email' => 'Email указан не верно!',
+    'validator_error_image' => 'Формат файла должен быть jpeg, png или gif',
+    'validator_error_int' => 'Поле должно быть числом!',
+    'validator_error_length' => 'Длина строки должна быть не меньше :count символов',
+    'validator_error_required' => 'Поле обязательно к заполнению!',
+    'validator_error_string' => 'Поле должно быть строкой!',
 ];

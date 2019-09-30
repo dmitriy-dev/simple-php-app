@@ -8,6 +8,8 @@
 namespace App\Validator\Validators;
 
 
+use App\Helpers\Lang;
+
 class ValidateConfirmed implements ValidateInterface
 {
 
@@ -24,7 +26,7 @@ class ValidateConfirmed implements ValidateInterface
         }
 
         return [
-            'error' => 'Поля не совпадают!',
+            'error' => Lang::get('validator_error_confirmed'),
         ];
     }
 }

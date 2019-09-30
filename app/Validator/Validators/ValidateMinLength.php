@@ -8,6 +8,8 @@
 namespace App\Validator\Validators;
 
 
+use App\Helpers\Lang;
+
 class ValidateMinLength implements ValidateInterface
 {
 
@@ -28,7 +30,7 @@ class ValidateMinLength implements ValidateInterface
         }
 
         return [
-            'error' => 'Длина строки должна быть не меньше ' . $additional . ' символов',
+            'error' => Lang::get('validator_error_length', ['count' => $additional]),
         ];
     }
 }

@@ -8,6 +8,8 @@
 namespace App\Validator\Validators;
 
 
+use App\Helpers\Lang;
+
 class ValidateInt implements ValidateInterface
 {
 
@@ -28,7 +30,7 @@ class ValidateInt implements ValidateInterface
         }
 
         return [
-            'error' => 'Поле должно быть числом!',
+            'error' => Lang::get('validator_error_int'),
         ];
     }
 }

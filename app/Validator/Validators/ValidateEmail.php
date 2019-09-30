@@ -8,6 +8,8 @@
 namespace App\Validator\Validators;
 
 
+use App\Helpers\Lang;
+
 class ValidateEmail implements ValidateInterface
 {
 
@@ -28,7 +30,7 @@ class ValidateEmail implements ValidateInterface
         }
 
         return [
-            'error' => 'Email указан не верно!',
+            'error' => Lang::get('validator_error_email'),
         ];
     }
 }

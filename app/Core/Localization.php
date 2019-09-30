@@ -73,9 +73,10 @@ class Localization
 
     /**
      * @param string $key
+     * @param array|null $names
      * @return null|string
      */
-    public function get(string $key): ?string
+    public function get(string $key, array $names = null): ?string
     {
         if (null === $this->messages) {
             $this->messages = include dirname($_SERVER['DOCUMENT_ROOT']) . '/resources/languages/' . $this->getCurrentLanguage() . '/messages.php';
@@ -83,6 +84,14 @@ class Localization
 
         if (!key_exists($key, $this->messages)) {
             return null;
+        }
+
+        if (null === $names) {
+            return $this->messages[$key];
+        }
+
+        foreach ($names as $k => $value) {
+            $this->messages[$key] = str_replace(':' . $k, $value, $this->messages[$key]);
         }
 
         return $this->messages[$key];

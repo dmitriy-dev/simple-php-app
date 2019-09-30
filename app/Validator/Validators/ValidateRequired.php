@@ -8,6 +8,8 @@
 namespace App\Validator\Validators;
 
 
+use App\Helpers\Lang;
+
 class ValidateRequired implements ValidateInterface
 {
 
@@ -24,7 +26,7 @@ class ValidateRequired implements ValidateInterface
         }
 
         return [
-            'error' => 'Поле обязательно к заполнению!',
+            'error' => Lang::get('validator_error_required'),
         ];
     }
 }
