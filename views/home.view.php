@@ -2,8 +2,8 @@
     <div class="col">
         <div class="card text-center">
             <div class="card-body">
-                <h5 class="card-title">Главная страница</h5>
-                <p class="card-text">Это пример простого приложения без использования фреймворков</p>
+                <h5 class="card-title"><?php echo \App\Helpers\Lang::get('main_title')?></h5>
+                <p class="card-text"><?php echo \App\Helpers\Lang::get('main_text')?></p>
             </div>
         </div>
     </div>

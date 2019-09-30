@@ -8,19 +8,19 @@
 namespace App\Core;
 
 
-use App\Models\User;
-use PDO;
-
 abstract class AbstractModel
 {
     protected static $table = '';
     protected $values = [];
-    protected $attributes = [];
+    protected $attributes = [
+        'created_at',
+        'updated_at',
+    ];
 
     public function __construct(array $attr = null)
     {
         if (is_array($attr) && key_exists('id', $attr)) {
-            $this->values['id'] = $attr['id'];
+            $this->id = $attr['id'];
         }
 
         foreach ($this->attributes as $attribute) {
@@ -75,23 +75,15 @@ abstract class AbstractModel
 
     private function create(): AbstractModel
     {
-        $fields = [];
+        $this->created_at = date('Y-m-d H:i:s');
 
-        $this->values['created_at'] = date('Y-m-d H:i:s');
-
-        foreach ($this->attributes as $attribute) {
-            if (null !== $this->$attribute) {
-                $fields[] = "`$attribute`='{$this->$attribute}'";
-            }
-        }
-
-        $row = DB::gi()->insert(static::$table, $fields);
+        $row = DB::gi()->insert(static::$table, $this->values);
         return new static($row);
     }
 
     private function update(): AbstractModel
     {
-
+        //TODO update method
     }
 
     public function __set($name, $value)
@@ -103,6 +95,6 @@ abstract class AbstractModel
 
     public function __get($name)
     {
-        return $this->values[$name];
+        return $this->values[$name] ?? null;
     }
 }

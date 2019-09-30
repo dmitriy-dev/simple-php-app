@@ -2,7 +2,7 @@
 /** @var string $view */
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php echo \App\Helpers\Lang::current()?>">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -12,22 +12,28 @@
 </head>
 <body>
 <div class="container">
-    <ul class="nav  justify-content-end">
+    <ul class="nav justify-content-center">
         <?php if (null === \App\Core\Auth::gi()->user()): ?>
             <li class="nav-item">
-                <a class="btn btn-success" href="/auth/register">Регистрация</a>
+                <a class="btn btn-success" href="/auth/register"><?php echo \App\Helpers\Lang::get('registration')?></a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-light" href="/auth/login">Войти</a>
+                <a class="btn btn-light" href="/auth/login"><?php echo \App\Helpers\Lang::get('login')?></a>
             </li>
         <?php else: ?>
             <li class="nav-item">
-                <a class="btn btn-success" href="/cabinet">Кабинет</a>
+                <a class="btn btn-success" href="/cabinet"><?php echo \App\Helpers\Lang::get('cabinet')?></a>
             </li>
             <li class="nav-item">
-                <a class="btn btn-success" href="/auth/logout">Выйти</a>
+                <a class="btn btn-success" href="/auth/logout"><?php echo \App\Helpers\Lang::get('logout')?></a>
             </li>
         <?php endif; ?>
+        <li class="nav-item languages">
+            <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                <a href="?lang=ru" class="btn btn-secondary <?php echo 'ru' === \App\Helpers\Lang::current() ? 'active' : null ?>">Rus</a>
+                <a href="?lang=en" class="btn btn-secondary <?php echo 'en' === \App\Helpers\Lang::current() ? 'active' : null ?>">Eng</a>
+            </div>
+        </li>
     </ul>
     <?php include $view; ?>
 </div>

@@ -59,7 +59,14 @@ class DB
 
     public function insert(string $table, array $attributes)
     {
-        $p = $this->connect()->prepare("INSERT INTO `$table` SET " . implode(', ', $attributes));
+        $query = "INSERT INTO `$table` (" . implode(', ', array_keys($attributes)) . ") VALUES (" . implode(', ', array_map(function ($key) {
+                return ':' . $key;
+            }, array_keys($attributes))) . ")";
+
+        $p = $this->connect()->prepare($query);
+        foreach ($attributes as $key => $value) {
+            $p->bindValue(':' . $key, $value);
+        }
         if ($p->execute()) {
             $id = $this->connect()->lastInsertId();
             $rows = $this->query("SELECT * FROM `$table` WHERE `id`='$id' LIMIT 1");
@@ -79,6 +86,5 @@ class DB
         $query = $this->connect()->prepare($queryString);
         $query->execute();
         return $query;
-        //return $this->connect()->query($query);
     }
 }

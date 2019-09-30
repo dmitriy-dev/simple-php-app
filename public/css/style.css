@@ -3,8 +3,12 @@
     margin-bottom: 20px;
 }
 
-.nav .btn {
+.nav a.btn-success, .nav a.btn-light {
     margin: 0 5px;
+}
+
+.nav .nav-item.languages {
+    margin-left: 50px;
 }
 
 .form-text .form-input-error {
