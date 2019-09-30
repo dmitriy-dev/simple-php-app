@@ -57,7 +57,7 @@ abstract class AbstractModel
             throw new \DomainException('Attribute "$table" was not set');
         }
 
-        $rows = DB::gi()->query('SELECT * FROM `' . static::$table . '` WHERE `id`=' . $id . ' LIMIT 1');
+        $rows = DB::gi()->query('SELECT * FROM `' . static::$table . '` WHERE `id`=:id LIMIT 1', ['id'=>$id]);
 
         foreach ($rows as $row) {
             return new static($row);

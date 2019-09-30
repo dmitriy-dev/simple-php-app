@@ -69,7 +69,7 @@ class DB
         }
         if ($p->execute()) {
             $id = $this->connect()->lastInsertId();
-            $rows = $this->query("SELECT * FROM `$table` WHERE `id`='$id' LIMIT 1");
+            $rows = $this->query("SELECT * FROM `$table` WHERE `id`=:id LIMIT 1", ['id' => $id]);
             foreach ($rows as $row) {
                 return $row;
             }
@@ -79,12 +79,13 @@ class DB
 
     /**
      * @param string $queryString
+     * @param array|null $params
      * @return bool|\PDOStatement
      */
-    public function query(string $queryString)
+    public function query(string $queryString, array $params = null)
     {
         $query = $this->connect()->prepare($queryString);
-        $query->execute();
+        $query->execute($params);
         return $query;
     }
 }

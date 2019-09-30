@@ -46,7 +46,7 @@ class User extends AbstractModel
             throw new \DomainException('Attribute "email" was not set');
         }
 
-        $rows = DB::gi()->query('SELECT * FROM `' . static::$table . '` WHERE `email`=\'' . $email . '\' LIMIT 1');
+        $rows = DB::gi()->query('SELECT * FROM `' . static::$table . '` WHERE `email`=:email LIMIT 1', ['email' => $email]);
 
         foreach ($rows as $row) {
             return new static($row);

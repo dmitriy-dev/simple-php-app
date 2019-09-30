@@ -22,7 +22,7 @@ trait Auth
             throw new \DomainException('Attribute "$table" was not set');
         }
 
-        $rows = DB::gi()->query('SELECT * FROM `' . static::$table . '` WHERE `token`=\'' . $token . '\' LIMIT 1');
+        $rows = DB::gi()->query('SELECT * FROM `' . static::$table . '` WHERE `token`=:token LIMIT 1', ['token' => $token]);
 
         foreach ($rows as $row) {
             return new static($row);
